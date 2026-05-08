@@ -1,59 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+"دليل السودان الرقمي" كفكرة وطنية تقنية، وبطريقة تجذب انتباه أي جهة رسمية أو مطور يرغب في المساهمة.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+🇸🇩 دليل السودان الرقمي | Sudan Digital Guide
+🌟 الرؤية | Vision
+دليل السودان الرقمي هو مبادرة وطنية تهدف إلى بناء أكبر مرجع رقمي تفاعلي للولايات السودانية. يهدف المشروع إلى توثيق التاريخ، المعالم السياحية، فرص الاستثمار، ودليل الخدمات الحيوية، ليقدم تجربة بصرية فريدة عبر تقنيات الجولات الافتراضية 360 درجة.
 
-## About Laravel
+Sudan Digital Guide is a national initiative to build the largest interactive digital reference for Sudanese states. The project documents history, landmarks, investment opportunities, and vital services, offering a unique visual experience through 360° virtual tours.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+✨ الميزات الرئيسية | Key Features
+🗺️ خريطة تفاعلية (Interactive Map): استكشاف الولايات السودانية عبر واجهة رسومية ذكية.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+📸 جولات افتراضية (360° Tours): تجربة بصرية غامرة للمعالم التاريخية باستخدام Pannellum.js.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+🤝 نظام السفراء (Ambassadors System): مساحة مخصصة لأبناء الولايات لإضافة وتوثيق البيانات تحت إشراف إداري.
 
-## Learning Laravel
+💼 بوابة الاستثمار (Investment Portal): عرض الفرص الاقتصادية والموارد الطبيعية في كل محلية.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+📞 دليل الخدمات (Services Directory): أرقام الطوارئ والخدمات الحكومية بضغطة زر.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+📰 أخبار الولايات (States News): تغطية حية لأهم الفعاليات والأخبار المحلية.
 
-## Laravel Sponsors
+🛠️ التقنيات المستخدمة | Tech Stack
+Backend: Laravel 11
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Admin Panel: Filament V3
 
-### Premium Partners
+Frontend: Tailwind CSS & Alpine.js
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Interactivity: Pannellum.js (for 360° Views)
 
-## Contributing
+Database: MySQL / PostgreSQL
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+🚀 التشغيل السريع | Quick Start
+نسخ المشروع (Clone the Repo):
 
-## Code of Conduct
+Bash
+git clone https://github.com/your-username/sudan-digital-guide.git
+cd sudan-digital-guide
+تثبيت المكتبات (Install Dependencies):
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Bash
+composer install
+npm install && npm run build
+إعداد البيئة (Setup Environment):
 
-## Security Vulnerabilities
+Bash
+cp .env.example .env
+php artisan key:generate
+المايجريشن والربط (Migrate & Link):
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Bash
+php artisan migrate --seed
+php artisan storage:link
+🤝 المساهمة | Contribution
+هذا المشروع مفتوح لكل السودانيين. نرحب بمساهمات المطورين، المصورين، والمؤرخين.
+This is an open-source project for all Sudanese. We welcome contributions from developers, photographers, and historians.
 
-## License
+إهداء: هذا العمل مساهمة وطنية لنهضة السودان الرقمية، هدية من المواطن محمد ناصر لبلده.
+Dedication: This work is a national contribution to Sudan's digital renaissance, a gift from Mohamed Nasir to his country.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+📄 الترخيص | License
+The Sudan Digital Guide is open-sourced software licensed under the MIT license.
+
+💡 ملاحظة للمطور | Developer Note
+تأكد من إعداد ملف الـ .env بشكل صحيح وضبط إعدادات الـ APP_URL لضمان عمل الجولات الافتراضية 360° دون مشاكل CORS.
+
+صُنع بكل فخر للسودان 🇸🇩
