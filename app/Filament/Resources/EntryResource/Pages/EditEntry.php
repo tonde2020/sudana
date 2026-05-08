@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Filament\Resources\EntryResource\Pages;
+
+use App\Filament\Resources\EntryResource;
+use Filament\Actions;
+use Filament\Resources\Pages\EditRecord;
+use Filament\Support\Enums\Width;
+
+class EditEntry extends EditRecord
+{
+    protected static string $resource = EntryResource::class;
+
+    protected Width | string | null $maxContentWidth = Width::Full;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\DeleteAction::make(),
+        ];
+    }
+}

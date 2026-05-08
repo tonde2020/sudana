@@ -1,0 +1,73 @@
+إضافة قسم "الأخبار والفعاليات" هي الخطوة التي ستحول المنصة من "دليل ثابت" إلى "مركز نبض يومي" للولايات. هذا القسم سيزيد من معدل الزيارات المتكررة للموقع، ويجعله مرجعاً للصحفيين والمواطنين والمسؤولين في الوزارة لمتابعة الأنشطة على الأرض.
+
+إليك كيفية دمج هذا القسم تقنياً وبصرياً:
+
+1. الإضافة في لوحة تحكم Filament
+سنضيف Resource جديد يسمى EventResource و NewsResource (أو جدول واحد يجمعهما مع حقل type للتفرقة).
+
+حقول الأخبار: (العنوان، النص، الصورة الرئيسية، المصدر، الولاية).
+
+حقول الفعاليات: (العنوان، التاريخ، الوقت، الموقع، نوع الفعالية: "ثقافية، اقتصادية، رياضية").
+
+2. التصميم البصري (Frontend Section)
+يُفضل وضع هذا القسم في منتصف صفحة الولاية ليعطي شعوراً بالحيوية. سنستخدم أسلوب "البطاقات الإخبارية" (News Cards) مع "تايم لاين" مصغر للفعاليات القادمة.
+
+HTML
+<section id="updates" class="py-16 bg-white" dir="rtl">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        
+        <!-- العمود الأول والثاني: الأخبار المحلية -->
+        <div class="lg:col-span-2">
+            <h2 class="text-2xl font-bold mb-8 border-r-4 border-red-600 pr-4 font-['Cairo']">أخبار الولاية</h2>
+            <div class="space-y-6">
+                @foreach($state->news()->latest()->take(3)->get() as $news)
+                <div class="flex flex-col md:flex-row gap-6 bg-gray-50 rounded-2xl overflow-hidden hover:bg-gray-100 transition shadow-sm">
+                    <img src="{{ $news->image }}" class="w-full md:w-48 h-40 object-cover">
+                    <div class="p-4">
+                        <span class="text-xs text-red-600 font-bold mb-2 block">{{ $news->created_at->format('Y/m/d') }}</span>
+                        <h3 class="text-xl font-bold mb-2 font-['Cairo'] text-gray-800">{{ $news->title }}</h3>
+                        <p class="text-gray-600 text-sm line-clamp-2 leading-relaxed">{{ $news->excerpt }}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- العمود الثالث: الأجندة والفعاليات -->
+        <div class="lg:col-span-1">
+            <h2 class="text-2xl font-bold mb-8 border-r-4 border-blue-600 pr-4 font-['Cairo']">فعاليات قادمة</h2>
+            <div class="bg-blue-50 rounded-3xl p-6 space-y-6">
+                @foreach($state->events()->upcoming()->take(4)->get() as $event)
+                <div class="flex gap-4 items-start">
+                    <div class="bg-white p-3 rounded-xl shadow-sm text-center min-w-[60px]">
+                        <span class="block text-blue-600 font-black text-xl">{{ $event->date->format('d') }}</span>
+                        <span class="block text-gray-500 text-xs">{{ $event->date->format('M') }}</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 text-sm font-['Cairo']">{{ $event->title }}</h4>
+                        <p class="text-xs text-gray-500 mt-1"><i class="heroicon-o-map-pin w-3"></i> {{ $event->location }}</p>
+                    </div>
+                </div>
+                @endforeach
+                
+                @if($state->events()->upcoming()->count() == 0)
+                    <p class="text-gray-400 text-center py-10">لا توجد فعاليات مجدولة حالياً</p>
+                @endif
+            </div>
+        </div>
+
+    </div>
+</section>
+3. مميزات إضافية للمشروع الوطني:
+لجعل هذا القسم "احترافياً" أمام وزارة الاتصالات، يمكننا إضافة:
+
+إشعارات الـ Browser (Web Push Notifications): لإرسال تنبيهات للمستخدمين المهتمين بولاية معينة عند نشر خبر عاجل أو فعالية استثمارية كبرى.
+
+الربط مع "سونا" (SUNA API): إذا كان بالإمكان جلب الأخبار الرسمية للولايات من وكالة الأنباء السودانية تلقائياً، فهذا سيوفر الكثير من الجهد على السفراء.
+
+تقويم الفعاليات (Calendar View): إضافة عرض "التقويم" لكي يرى المستثمر أو السائح جدول الفعاليات في الولاية خلال شهر كامل.
+
+تكامل وسائل التواصل: إمكانية مشاركة الخبر أو الفعالية مباشرة عبر "واتساب" لضمان وصول المعلومة لكل المواطنين (خاصة في السودان حيث الواتساب هو الوسيلة الأسرع).
+
+القيمة المضافة للوزارة:
+وجود قسم الأخبار يجعل المنصة "أداة رصد ومتابعة" رسمية، حيث يمكن للوزير أو المسؤولين الدخول ومعرفة ما يحدث في ولاية غرب دارفور أو ولاية القضارف في لحظتها، مما يجعل المشروع جزءاً من "المركز القومي للمعلومات".
