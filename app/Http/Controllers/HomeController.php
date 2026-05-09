@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Contribution;
 use App\Models\Entry;
+use App\Models\InvestmentOpportunity;
 use App\Models\Locality;
 use App\Models\Service;
 use App\Models\State;
+use App\Models\Story;
 use App\Models\VirtualTour;
+use App\Support\FeatureTableGuard;
 use App\Support\SudanMap;
 use App\Support\SudanStateCatalog;
-use Illuminate\Contracts\View\View;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): Response
     {
         $search = trim((string) $request->string('q'));
 
@@ -72,9 +75,19 @@ class HomeController extends Controller
                 ->all();
         }
 
-        return view('welcome', [
+        $investmentFeatureAvailable = FeatureTableGuard::hasTables(['investment_opportunities', 'investment_offices']);
+        $storiesFeatureAvailable = FeatureTableGuard::hasTables(['stories', 'story_people']);
+
+        return response()
+            ->view('welcome', [
             'states' => $states,
             'featuredTours' => $featuredTours,
+            'portalStats' => [
+                'investment_opportunities' => $investmentFeatureAvailable ? InvestmentOpportunity::query()->published()->count() : 0,
+                'stories' => $storiesFeatureAvailable ? Story::query()->published()->count() : 0,
+                'investment_feature_available' => $investmentFeatureAvailable,
+                'stories_feature_available' => $storiesFeatureAvailable,
+            ],
             'stats' => [
                 'states' => State::query()->count() ?: count(SudanStateCatalog::forHomepage()),
                 'localities' => Locality::query()->count(),
@@ -82,6 +95,9 @@ class HomeController extends Controller
                 'services' => Service::query()->count(),
                 'contributions' => Contribution::query()->count(),
             ],
-        ]);
+        ])
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Sat, 01 Jan 1990 00:00:00 GMT');
     }
 }

@@ -72,4 +72,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Contribution::class, 'reviewer_id');
     }
+
+    public function reviewedInvestmentOpportunities(): HasMany
+    {
+        return $this->hasMany(InvestmentOpportunity::class, 'reviewer_id');
+    }
+
+    public function reviewedStories(): HasMany
+    {
+        return $this->hasMany(Story::class, 'reviewer_id');
+    }
+
+    public function reviewedStoryPeople(): HasMany
+    {
+        return $this->hasMany(StoryPerson::class, 'reviewer_id');
+    }
 }

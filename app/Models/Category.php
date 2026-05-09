@@ -40,4 +40,9 @@ class Category extends Model
     {
         return $this->hasMany(Contribution::class);
     }
+
+    public function investmentOpportunities(): HasMany
+    {
+        return $this->hasMany(InvestmentOpportunity::class);
+    }
 }

@@ -19,6 +19,7 @@
         </style>
     </head>
     <body class="min-h-screen bg-white text-gray-900 antialiased">
+        @include('partials.mobile-header')
         <a href="#main-content" class="fixed start-4 top-2 z-[100] -translate-y-[calc(100%+0.5rem)] rounded-lg bg-green-700 px-4 py-2 text-sm font-black text-white shadow-md transition-transform focus:translate-y-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-800">
             تخطي إلى المحتوى
         </a>
@@ -154,11 +155,13 @@
                 } else {
                     $published = asset('storage/' . ltrim($panoramaPathTrim, '/'));
                     $pathOnly = parse_url($published, PHP_URL_PATH);
-                    $pathOnly = is_string($pathOnly) ? '/'.trim($pathOnly, '/') : '/storage/'.ltrim($panoramaPathTrim, '/');
+                    $pathOnly = (is_string($pathOnly) && $pathOnly !== '')
+                        ? '/'.trim($pathOnly, '/')
+                        : '/storage/'.ltrim($panoramaPathTrim, '/');
                     if (! str_starts_with($pathOnly, '/')) {
                         $pathOnly = '/'.$pathOnly;
                     }
-                    $panoramaViewerUrl = rtrim(request()->getSchemeAndHttpHost(), '/').$pathOnly;
+                    $panoramaViewerUrl = str_replace('\\', '/', rtrim(request()->root(), '/')).(str_starts_with($pathOnly, '/') ? $pathOnly : '/'.$pathOnly);
                 }
 
                 $pannellumStrings = [
@@ -234,7 +237,7 @@
                         var ttl = Date.now() + 3e4;
                         var onThrow = function (ev) {
                             var err = ev && ev.error;
-                            if (! ev || ! ev.filename || String(ev.filename).indexOf('pannellum') === - 1) {
+                            if (! ev || ! ev.filename || String(ev.filename).indexOf('pannellum') === -1) {
                                 return;
                             }
                             if (! err || typeof err !== 'object' || ! ('type' in err)) {

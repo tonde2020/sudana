@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DirectoryCategorySeeder::class,
             NorthernStateSeeder::class,
+            PortalExperienceSeeder::class,
         ]);
 
         User::query()->updateOrCreate(

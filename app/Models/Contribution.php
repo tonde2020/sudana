@@ -11,6 +11,12 @@ class Contribution extends Model
 {
     use HasFactory;
 
+    public const TYPE_ENTRY = 'entry';
+    public const TYPE_SERVICE = 'service';
+    public const TYPE_INVESTMENT = 'investment';
+    public const TYPE_STORY = 'story';
+    public const TYPE_CORRECTION = 'correction';
+
     public const STATUS_PENDING = 'pending';
     public const STATUS_APPROVED = 'approved';
     public const STATUS_REJECTED = 'rejected';
@@ -19,12 +25,16 @@ class Contribution extends Model
         'state_id',
         'locality_id',
         'category_id',
+        'submission_type',
         'reviewer_id',
         'contributor_name',
         'contributor_email',
         'contributor_phone',
         'title',
         'content',
+        'payload',
+        'target_model',
+        'target_id',
         'status',
         'review_notes',
         'source_links',
@@ -34,6 +44,7 @@ class Contribution extends Model
     protected function casts(): array
     {
         return [
+            'payload' => 'array',
             'source_links' => 'array',
             'reviewed_at' => 'datetime',
         ];

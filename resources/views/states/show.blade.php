@@ -18,6 +18,7 @@
         </style>
     </head>
     <body class="min-h-screen bg-white text-gray-900 antialiased">
+        @include('partials.mobile-header')
         <a href="#main-content" class="fixed start-4 top-2 z-[100] -translate-y-[calc(100%+0.5rem)] rounded-lg bg-green-700 px-4 py-2 text-sm font-black text-white shadow-md transition-transform focus:translate-y-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-green-800">
             تخطي إلى المحتوى
         </a>

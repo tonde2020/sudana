@@ -69,6 +69,26 @@ class State extends Model
         return $this->hasMany(VirtualTour::class);
     }
 
+    public function investmentOffices(): HasMany
+    {
+        return $this->hasMany(InvestmentOffice::class);
+    }
+
+    public function investmentOpportunities(): HasMany
+    {
+        return $this->hasMany(InvestmentOpportunity::class);
+    }
+
+    public function stories(): HasMany
+    {
+        return $this->hasMany(Story::class);
+    }
+
+    public function storyPeople(): HasMany
+    {
+        return $this->hasMany(StoryPerson::class);
+    }
+
     protected function logoUrl(): Attribute
     {
         return Attribute::make(

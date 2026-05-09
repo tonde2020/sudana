@@ -18,6 +18,7 @@
         </style>
     </head>
     <body class="min-h-screen bg-[#f7fbf7] text-gray-900 antialiased">
+        @include('partials.mobile-header')
         <header class="sticky top-0 z-40 border-b border-emerald-100 bg-white/90 backdrop-blur" dir="rtl">
             <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
                 <div class="flex items-center justify-between gap-3">
